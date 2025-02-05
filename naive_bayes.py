@@ -36,4 +36,5 @@ if __name__ == "__main__":
             f"Probability in '{emotion}' is: {sentence_likelihood(sentence, emotion)}"
         )
 
+    print()
     print(f"Sentence is likely of emotion: '{classify_sentence(sentence, emotions)}'")
