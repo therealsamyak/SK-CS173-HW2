@@ -45,5 +45,6 @@ def read_and_process_file():
 
 train_data, val_data, test_data = read_and_process_file()
 
-for i in range(10):
-    print(train_data[i])
+if __name__ == "__main__":
+    for i in range(10):
+        print(train_data[i])
