@@ -59,6 +59,9 @@ def process_spreadsheet():
                         processed_rows.append([row_i, emotion, trim_text])
 
     with open(OUTPUT_PATH, "w", newline="", encoding="utf-8") as f:
+        # Output Format
+        # Row #, Emotion (Class), Paragraph
+
         writer = csv.writer(f)
         writer.writerows(processed_rows)
 
