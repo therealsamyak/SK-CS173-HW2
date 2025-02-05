@@ -1,4 +1,4 @@
-from datatokenization import read_and_process_file
+from data_tokenization import read_and_process_file
 
 train_data = read_and_process_file()[0]
 
