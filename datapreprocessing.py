@@ -13,7 +13,10 @@ from googleapiclient.discovery import build
 # then download the corresponding credentials.json for it
 
 SERVICE_ACCOUNT_FILE = "credentials.json"
+
+# https://docs.google.com/spreadsheets/d/19Dg3yKvUR3XCyiAsfV9UeSU_7SRgylXwS6GQSwU0AN4/edit?gid=0#gid=0
 SPREADSHEET_ID = "19Dg3yKvUR3XCyiAsfV9UeSU_7SRgylXwS6GQSwU0AN4"
+
 SHEET_NAMES = ["Sheet1"]
 OUTPUT_PATH = "cs173-hw2-processed.csv"
 
