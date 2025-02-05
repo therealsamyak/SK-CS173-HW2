@@ -32,9 +32,10 @@ def word_likelihood(word, emotion):
 
 if __name__ == "__main__":
 
-    word = input("Enter Word: ")
-    emotion = input("Enter Emotion (ex. Joy): ").capitalize()
+    emotions = ["Joy", "Fear", "Anger", "Surprise", "Disgust", "Sadness"]
 
-    print(
-        f"Probability of '{word}' in '{emotion}' is: {word_likelihood(word, emotion)}"
-    )
+    word = input("Enter Word: ")
+    for emotion in emotions:
+        print(
+            f"Probability of '{word}' in '{emotion}' is: {word_likelihood(word, emotion)}"
+        )
