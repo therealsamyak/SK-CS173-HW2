@@ -11,6 +11,8 @@ from googleapiclient.discovery import build
 # https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts/create?walkthrough_id=iam--create-service-account#step_index=1
 #
 # then download the corresponding credentials.json for it
+#
+# ONLY NECESSARY IF YOU WANT TO RUN THIS FILE PROPERLY, OTHERWISE PROCESSED DATA IS ALREADY IN .csv PROVIDED
 
 SERVICE_ACCOUNT_FILE = "credentials.json"
 
