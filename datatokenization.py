@@ -1,5 +1,4 @@
 import csv
-from collections import Counter
 
 import nltk
 
