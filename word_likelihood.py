@@ -19,7 +19,7 @@ def count_word(word: str, data: list[DataPoint]):
     return sum(obj.tokens.count(word) for obj in data)
 
 
-def word_likelihood(word, emotion):
+def word_likelihood(word: str, emotion: str):
 
     filtered_data = list(filter(lambda obj: obj.emotion == emotion, train_data))
 
@@ -28,6 +28,15 @@ def word_likelihood(word, emotion):
     denom = count_tokens(filtered_data) + get_vocab_size(train_data)
 
     return 1.0 * numer / denom
+
+
+def classify_word(word: str, emotions: list[str]):
+    probs = {}
+
+    for emotion in emotions:
+        probs[emotion] = word_likelihood(word, emotion)
+
+    return max(probs, key=probs.get)
 
 
 if __name__ == "__main__":
@@ -39,3 +48,7 @@ if __name__ == "__main__":
         print(
             f"Probability of '{word}' in '{emotion}' is: {word_likelihood(word, emotion)}"
         )
+
+    print(
+        f"'{word}' is likely of emotion: '{classify_word(word, emotions)}'"
+    )
