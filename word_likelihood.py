@@ -49,4 +49,5 @@ if __name__ == "__main__":
             f"Probability of '{word}' in '{emotion}' is: {word_likelihood(word, emotion)}"
         )
 
+    print()
     print(f"'{word}' is likely of emotion: '{classify_word(word, emotions)}'")
