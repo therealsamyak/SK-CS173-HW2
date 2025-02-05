@@ -41,14 +41,12 @@ def classify_word(word: str, emotions: list[str]):
 
 if __name__ == "__main__":
 
-    emotions = ["Joy", "Fear", "Anger", "Surprise", "Disgust", "Sadness"]
-
     word = input("Enter Word: ")
+
+    emotions = ["Joy", "Fear", "Anger", "Surprise", "Disgust", "Sadness"]
     for emotion in emotions:
         print(
             f"Probability of '{word}' in '{emotion}' is: {word_likelihood(word, emotion)}"
         )
 
-    print(
-        f"'{word}' is likely of emotion: '{classify_word(word, emotions)}'"
-    )
+    print(f"'{word}' is likely of emotion: '{classify_word(word, emotions)}'")
