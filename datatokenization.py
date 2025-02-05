@@ -7,7 +7,7 @@ nltk.download("punkt_tab")
 
 
 class DataPoint:
-    def __init__(self, tokens, emotion):
+    def __init__(self, tokens: list[str], emotion: str):
         self.tokens = tokens
         self.emotion = emotion
 
