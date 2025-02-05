@@ -27,9 +27,10 @@ def classify_sentence(sentence: str, emotions: list[str]):
 
 if __name__ == "__main__":
 
-    emotions = ["Joy", "Fear", "Anger", "Surprise", "Disgust", "Sadness"]
-
+    # Replace with other hardcoded sentence
     sentence = "As she hugged her daughter goodbye on the first day of college, she felt both sad to see her go and joyful knowing that she was embarking on a new and exciting chapter in her life."
+
+    emotions = ["Joy", "Fear", "Anger", "Surprise", "Disgust", "Sadness"]
     for emotion in emotions:
         print(
             f"Probability in '{emotion}' is: {sentence_likelihood(sentence, emotion)}"
