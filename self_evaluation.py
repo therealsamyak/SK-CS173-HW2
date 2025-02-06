@@ -1,7 +1,7 @@
 import math
 
 from data_tokenization import DataPoint, read_and_process_file
-from naive_bayes import classify_sentence
+from sentence_likelihood import classify_sentence
 from word_likelihood import word_likelihood
 
 
@@ -41,7 +41,7 @@ def confusion_matrix(data: list[DataPoint], emotions: list[str]):
         predicted_label = emotions.index(
             classify_sentence(" ".join(obj.tokens), emotions)
         )
-        conf_matrix[true_label][predicted_label] += 1
+        conf_matrix[predicted_label][true_label] += 1
 
     return conf_matrix
 
