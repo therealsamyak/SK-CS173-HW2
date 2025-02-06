@@ -68,13 +68,11 @@ def calc_metrics(conf_matrix, emotions, emotion):
 
     metrics = Metrics(emotion)
 
-    metrics.accuracy = (true_pos + true_neg) / (
-        true_pos + true_neg + false_pos + false_neg
-    )
-    metrics.precision = true_pos / (true_pos + false_pos)
-    metrics.recall = true_pos / (true_pos + false_neg)
+    metrics.accuracy = 1.0*(true_pos + true_neg) / total_samples
+    metrics.precision = 1.0*true_pos / (true_pos + false_pos)
+    metrics.recall = 1.0*true_pos / (true_pos + false_neg)
     metrics.f1_score = (
-        2 * (metrics.precision * metrics.recall) / (metrics.precision + metrics.recall)
+        2.0 * (metrics.precision * metrics.recall) / (metrics.precision + metrics.recall)
     )
 
     return metrics
