@@ -2,15 +2,21 @@ import math
 
 import nltk
 
+from data_tokenization import read_and_process_file
+from priors import calc_priors
 from word_likelihood import word_likelihood
 
 
 def sentence_likelihood(sentence: str, emotion: str):
     sentence_tokens = nltk.word_tokenize(sentence)
-    prob = 0
+
+    # start with prior prob
+    prob = math.log(calc_priors()[emotion])
 
     for word in sentence_tokens:
-        word_prob = word_likelihood(word, emotion)
+        word_prob = (
+            word_likelihood(word, emotion) if word_likelihood(word, emotion) > 0 else 1
+        )
         prob += math.log(word_prob)
 
     return prob
