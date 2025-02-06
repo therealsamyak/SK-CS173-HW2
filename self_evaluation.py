@@ -1,6 +1,7 @@
 import math
 
 from data_tokenization import DataPoint, read_and_process_file
+from priors import calc_priors
 from sentence_likelihood import classify_sentence
 from word_likelihood import word_likelihood
 
@@ -24,13 +25,25 @@ class Metrics:
 
 
 def sent_likelihood_from_tokens(sentence_tokens: list[str], emotion: str):
-    prob = 0
+    # start with prior prob
+    prob = math.log(calc_priors()[emotion])
 
     for word in sentence_tokens:
-        word_prob = word_likelihood(word, emotion)
+        word_prob = (
+            word_likelihood(word, emotion) if word_likelihood(word, emotion) > 0 else 1
+        )
         prob += math.log(word_prob)
 
     return prob
+
+
+def classify_sent_from_tokens(sentence_tokens: list[str], emotions: list[str]):
+    probs = {}
+
+    for emotion in emotions:
+        probs[emotion] = sent_likelihood_from_tokens(sentence_tokens, emotion)
+
+    return max(probs, key=probs.get)
 
 
 def confusion_matrix(data: list[DataPoint], emotions: list[str]):
@@ -39,7 +52,7 @@ def confusion_matrix(data: list[DataPoint], emotions: list[str]):
     for obj in data:
         true_label = emotions.index(obj.emotion)
         predicted_label = emotions.index(
-            classify_sentence(" ".join(obj.tokens), emotions)
+            classify_sent_from_tokens(obj.tokens, emotions)
         )
         conf_matrix[predicted_label][true_label] += 1
 
@@ -62,8 +75,8 @@ def calc_metrics(conf_matrix, emotions, emotion):
 
     i = emotions.index(emotion)
     true_pos = conf_matrix[i][i]
-    false_pos = sum(conf_matrix[row][i] for row in range(len(emotions)) if row != i)
-    false_neg = sum(conf_matrix[i][col] for col in range(len(emotions)) if col != i)
+    false_neg = sum(conf_matrix[row][i] for row in range(len(emotions)) if row != i)
+    false_pos = sum(conf_matrix[i][col] for col in range(len(emotions)) if col != i)
     true_neg = total_samples - (true_pos + false_pos + false_neg)
 
     metrics = Metrics(emotion)
